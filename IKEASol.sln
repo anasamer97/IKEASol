@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKEA.PL", "IKEA.PL\IKEA.PL.csproj", "{1CC6BCDB-4620-4CC5-86F8-26DA9FF5F928}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKEA.BLL", "IKEA.BLL\IKEA.BLL.csproj", "{C10B6600-3514-4773-B4C2-C7AF5E57E323}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IKEA.DAL", "IKEA.DAL\IKEA.DAL.csproj", "{9DD2EEE1-538A-471A-8B7C-80E0518D8A92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CC6BCDB-4620-4CC5-86F8-26DA9FF5F928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CC6BCDB-4620-4CC5-86F8-26DA9FF5F928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CC6BCDB-4620-4CC5-86F8-26DA9FF5F928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CC6BCDB-4620-4CC5-86F8-26DA9FF5F928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C10B6600-3514-4773-B4C2-C7AF5E57E323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C10B6600-3514-4773-B4C2-C7AF5E57E323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C10B6600-3514-4773-B4C2-C7AF5E57E323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C10B6600-3514-4773-B4C2-C7AF5E57E323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD2EEE1-538A-471A-8B7C-80E0518D8A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD2EEE1-538A-471A-8B7C-80E0518D8A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD2EEE1-538A-471A-8B7C-80E0518D8A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD2EEE1-538A-471A-8B7C-80E0518D8A92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {447DCE03-9E0A-4926-BDCE-318BD33416E6}
+	EndGlobalSection
+EndGlobal

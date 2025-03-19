@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace IKEA.DAL.Persistance.Data.Migrations
+namespace IKEA.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class DepartmentModule : Migration
+    public partial class IntitalCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +24,8 @@ namespace IKEA.DAL.Persistance.Data.Migrations
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GetDate()"),
-                    LastMofdifedOn = table.Column<int>(type: "int", nullable: false, computedColumnSql: "GetDate()")
+                    LastMofdifedBy = table.Column<int>(type: "int", nullable: false),
+                    LastModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false, computedColumnSql: "GetDate()")
                 },
                 constraints: table =>
                 {

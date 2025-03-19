@@ -1,3 +1,4 @@
+using IKEA.BLL.Services.DepartmentServices;
 using IKEA.DAL.Persistance.Data;
 using IKEA.DAL.Persistance.Repositories.Departments;
 using Microsoft.Data.SqlClient;
@@ -9,42 +10,22 @@ namespace IKEA.PL
     {
         public static void Main(string[] args)
         {
-			string connectionString = "Server=.;Database=IKEA;Trusted_Connection=True;TrustServerCertificate=True;";
-			using (SqlConnection connection = new SqlConnection(connectionString))
-			{
-				try
-				{
-					connection.Open();
-					Console.WriteLine("Connection successful!");
-				}
-				catch (Exception ex)
-				{
-					Console.WriteLine("Error: " + ex.Message);
-				}
-			}
-
+			
 			var builder = WebApplication.CreateBuilder(args);
-
+ 
             #region Configure Services
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
 			{
 				options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 			});
-
             builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
 			#endregion
 
 
 
-			/*builder.Services.AddScoped<DbContextOptions<ApplicationDbContext>>(service =>
-            {
-                var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-				optionsBuilder.UseSqlServer("Server=.;Database=IKEA;Trusted_Connection=True;");
 
-                var options = optionsBuilder.Options;
-				return options;
-			});*/
 
 			var app = builder.Build();
             // Configure the HTTP request pipeline.

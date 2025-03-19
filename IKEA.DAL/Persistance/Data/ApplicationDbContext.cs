@@ -11,7 +11,7 @@ namespace IKEA.DAL.Persistance.Data
 {
     public class ApplicationDbContext:DbContext
     {
-		// Department => Context => 
+		// Department => Context => Options
 		// This constructor is used to initialize the ApplicationDbContext class
 		public ApplicationDbContext(DbContextOptions options):base(options)
 		{
@@ -20,7 +20,7 @@ namespace IKEA.DAL.Persistance.Data
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("Server=.;Database=IKEA;Trusted_Connection=True;");
+			optionsBuilder.UseSqlServer("Server=.;Database=IKEA;Trusted_Connection=True;TrustServerCertificate=true");
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

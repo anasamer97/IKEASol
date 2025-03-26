@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DepartmentDto>
+﻿@model IEnumerable<EmployeeDto>
 @{
     ViewData["Title"] = "Departments";
 
@@ -38,17 +38,47 @@
                     </td>
 
                     <td>
-                        <a asp-controller="Department" asp-action="Update" asp-route-id="@dept.Id" class="btn btn-success">
+                        <a asp-controller="Department" asp-action="Edit" asp-route-id="@dept.Id" class="btn btn-success">
                             <i class="fas fa-edit"></i>
                             Update</a>
                     </td>
 
                     <td>
-                        <a asp-controller="Department" asp-action="Delete" asp-route-id="@dept.Id" class="btn btn-danger">
+                        @* <a asp-controller="Department" asp-action="Delete" asp-route-id="@dept.Id" class="btn btn-danger">
                             <i class="fas fa-trash"></i>
-                            Delete</a>
+                            Delete</a> *@
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#DeleteDepartment">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
                     </td>
                 </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="DeleteDepartment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete department</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h4 class="modal-title fs-5" id="exampleModalLabel">Are you sure to delete @dept.Name Department?</h4>
+
+                            </div>
+                            <div class="modal-footer">
+                                <form asp-action="Delete" asp-route-DeptId="@dept.Id" method="post">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="mt-4">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <input type="submit" value="Delete" class="btn btn-danger" />
+                                    </div>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </tbody>
     </table>
@@ -60,4 +90,6 @@ else
         <h3>There is no departments</h3>
     </div>
 }
+
+
 

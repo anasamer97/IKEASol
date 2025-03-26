@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace IKEA.BLL.Dto_s.Departments
 {
-    public class CreatedDepartmentDto
-    {
+	public class CreatedDepartmentDto
+	{
 		[Required(ErrorMessage = "Name is required")]
 		public string Name { get; set; } = null!;
 

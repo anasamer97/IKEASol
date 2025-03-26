@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace IKEA.BLL.Services.DepartmentServices
 {
-    public class DepartmentServices : IDepartmentServices
+	public class DepartmentServices : IDepartmentServices
 	{
-        private IDepartmentRepository Repository;
+		private IDepartmentRepository Repository;
 
 		public DepartmentServices(IDepartmentRepository _repository)
 		{
@@ -29,7 +29,7 @@ namespace IKEA.BLL.Services.DepartmentServices
 
 			}).ToList();
 
-			 return Departments;
+			return Departments;
 		}
 
 		public DepartmentDetailsDto? GetDepartmentById(int id)
@@ -82,7 +82,7 @@ namespace IKEA.BLL.Services.DepartmentServices
 				LastModifiedOn = DateTime.Now,
 			};
 
-			return Repository.Update(UpdatedDepartment);	
+			return Repository.Update(UpdatedDepartment);
 		}
 
 		public bool DeleteDepartment(int id)
@@ -93,7 +93,7 @@ namespace IKEA.BLL.Services.DepartmentServices
 
 			else
 				return false;
-			
+
 		}
 
 
@@ -101,8 +101,8 @@ namespace IKEA.BLL.Services.DepartmentServices
 
 
 
-		
 
-		
+
+
 	}
 }

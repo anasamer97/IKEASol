@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace IKEA.BLL.Dto_s.Departments
 {
-    public class DepartmentDetailsDto
-    {
-        public int Id { get; set; }
+	public class DepartmentDetailsDto
+	{
+		public int Id { get; set; }
 
 		#region Adminstrator
 		public bool IsDeleted { get; set; } // Soft delete

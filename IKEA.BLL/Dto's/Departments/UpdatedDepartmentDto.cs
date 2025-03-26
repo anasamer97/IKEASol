@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace IKEA.BLL.Dto_s.Departments
 {
-    public class UpdatedDepartmentDto
-    {
+	public class UpdatedDepartmentDto
+	{
 		public int Id { get; set; }
 
 		public string Name { get; set; } = null!;

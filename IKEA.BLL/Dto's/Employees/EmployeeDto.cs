@@ -1,6 +1,7 @@
 ﻿using IKEA.DAL.Common.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +16,16 @@ namespace IKEA.BLL.Dto_s.Employees
 
 		public int? Age { get; set; }
 
+		[DataType(DataType.Currency)]
 
 		public decimal Salary { get; set; }
-
+		[Display(Name = "Is Active")]
 		public bool IsActive { get; set; }
 
 		public string? Email { get; set; }
 
+		public Gender Gender { get; set; } 
 
-
-		public string Gender { get; set; } = null!;
-
-		public string EmployeeType { get; set; } = null!;
+		public EmployeeType EmployeeType { get; set; } 
 	}
 }

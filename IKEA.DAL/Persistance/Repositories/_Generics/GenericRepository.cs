@@ -13,8 +13,6 @@ namespace IKEA.DAL.Persistance.Repositories._Generics
 {
 	public class GenericRepository<T> : IGenericRepository<T> where T : ModelBase
 	{
-
-
 		private readonly ApplicationDbContext dbContext;
 
 		public GenericRepository(ApplicationDbContext context)
@@ -22,12 +20,13 @@ namespace IKEA.DAL.Persistance.Repositories._Generics
 			dbContext = context;
 		}
 
-		public IEnumerable<T> GetAll(bool WithNoTracking = true)
+		public IQueryable<T> GetAll(bool WithNoTracking = true)
 		{
 			if (WithNoTracking)
-				return dbContext.Set<T>().Where(D => D.IsDeleted == false).AsNoTracking().ToList();
-			else
-				return dbContext.Set<T>().Where(D => D.IsDeleted == false).ToList();
+				return dbContext.Set<T>().Where(D => D.IsDeleted == false).AsNoTracking();
+			
+
+			return dbContext.Set<T>().Where(D => D.IsDeleted == false);
 		}
 
 

@@ -1,4 +1,6 @@
-﻿using IKEA.BLL.Dto_s.Employees;
+﻿using Azure;
+using IKEA.BLL.Dto_s.Employees;
+using IKEA.DAL.Common.Enums;
 using IKEA.DAL.Persistance.Repositories.Employees;
 using System;
 using System.Collections.Generic;
@@ -18,18 +20,24 @@ namespace IKEA.BLL.Services.EmployeeServices
 
 		public IEnumerable<EmployeeDto> GetAllEmployees()
 		{
-			return repository.GetAll().Where(E=>E.IsDeleted == false).Select(E=>new EmployeeDto()
+			var employees = repository.GetAll();
+			var FilteredEmployees = employees.Where(E => E.IsDeleted == false);
+
+			var AfterFiltration = FilteredEmployees.Select(E => new EmployeeDto()
 			{
 				Id = E.Id,
 				Name = E.Name,
 				Age = E.Age,
-				Salary = E.Salary,
+				Salary = E.Salary,  
 				IsActive = E.IsActive,
 				Email = E.Email,
-				Gender = nameof(E.Gender),
-				EmployeeType = nameof(E.EmployeeType)
+				Gender = E.Gender,
+				EmployeeType = E.EmployeeType
+			});
+				
+			
+			return AfterFiltration.ToList();
 
-			}).ToList();
 		}
 
 		public EmployeeDetailsDto? GetEmployeeById(int id)

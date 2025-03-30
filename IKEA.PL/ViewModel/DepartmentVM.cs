@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using IKEA.DAL.Common.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IKEA.BLL.Dto_s.Departments
+namespace IKEA.PL.ViewModel
 {
-	public class UpdatedDepartmentDto
+	public class DepartmentVM
 	{
+		
+
+
 		public int Id { get; set; }
-		[Required(ErrorMessage = "Name is required")]	
+		[Required(ErrorMessage = "Name is required")]
 		public string Name { get; set; } = null!;
 		[Required(ErrorMessage = "Code is required")]
 

@@ -1,4 +1,4 @@
-﻿@model UpdatedDepartmentDto
+﻿@model DepartmentVM
 @{
     ViewData["Title"] = "Edit Department";
 }
@@ -6,28 +6,8 @@
 <div class="row justify-content-center align-content-center flex-column">
     <h1 class="col-6 my-4">Edit Department : @Model.Name</h1>
     <form asp-action="Edit" method="post" class="col-6">
-        <div asp-validation-summary="ModelOnly"></div>
-        <div class="form-group">
-            <label class="form-label" asp-for="Code"></label>
-            <input asp-for="Code" class="form-control" />
-            <span class="text-danger" asp-validation-for="Code"></span>
-        </div>
+        <partial name="Partials/_CreateEditPartial" model="@Model" />
 
-        <div class="form-group">
-            <label class="form-label" asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
-            <span class="text-danger" asp-validation-for="Name"></span>
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" asp-for="Description"></label>
-            <textarea asp-for="Description" class="form-control"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" asp-for="CreationDate"></label>
-            <input asp-for="CreationDate" type="date" class="form-control" />
-        </div>
 
         <div class="mt-4">
             <input type="submit" value="Update" class="btn btn-success" />
@@ -38,4 +18,7 @@
 
 </div>
 
-
+@section ValidateScripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

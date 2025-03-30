@@ -1,5 +1,6 @@
 ﻿using IKEA.BLL.Dto_s.Departments;
 using IKEA.BLL.Services.DepartmentServices;
+using IKEA.PL.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IKEA.PL.Controllers
@@ -53,29 +54,35 @@ namespace IKEA.PL.Controllers
 		{
 			return View();
 		}
-
+		 
 		[HttpPost]
-		public IActionResult Create(CreatedDepartmentDto departmentDto)
+		[ValidateAntiForgeryToken]
+		public IActionResult Create(DepartmentVM departmentVM)
 		{
 			// Server Side Validation	
 			if (!ModelState.IsValid)
-				return View(departmentDto);
+				return View(departmentVM);
 
 			var Message = string.Empty;
 
 
 			try
 			{
+				var departmentDto = new CreatedDepartmentDto
+				{
+					Name = departmentVM.Name,
+					Code = departmentVM.Code,
+					Description = departmentVM.Description,
+					CreationDate = DateTime.Now
+				};
+
+
 				var Result = departmentServices.CreateDepartment(departmentDto);
 				if (Result > 0)
 					return RedirectToAction(nameof(Index));
 
 				else
-				{
 					Message = "Department is not created";
-					ModelState.AddModelError(string.Empty, Message);
-					return View(departmentDto);
-				}
 			}
 
 			catch (Exception ex)
@@ -86,19 +93,14 @@ namespace IKEA.PL.Controllers
 				// Display the error message to the user
 
 				if (environment.IsDevelopment())
-				{
 					Message = ex.Message;
-					ModelState.AddModelError(string.Empty, Message);
-					return View(departmentDto);
-				}
-
+					
 				else
-				{
 					Message = "An Error Occured at the creation operation";
-				}
-				return View(departmentDto);
+				
 			}
 
+				return View(departmentVM);
 
 		}
 		#endregion
@@ -113,7 +115,7 @@ namespace IKEA.PL.Controllers
 			if (department is null)
 				return NotFound();
 
-			var MappedDepartment = new UpdatedDepartmentDto
+			var MappedDepartment = new DepartmentVM
 			{
 				Id = department.Id,
 				Name = department.Name,
@@ -125,14 +127,23 @@ namespace IKEA.PL.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Edit(UpdatedDepartmentDto departmentDto)
+		[ValidateAntiForgeryToken]
+		public IActionResult Edit(DepartmentVM departmentVM)
 		{
 			if (!ModelState.IsValid)
-				return View(departmentDto);
+				return View(departmentVM);
 
 			var Message = string.Empty;
 			try
 			{
+				var departmentDto = new UpdatedDepartmentDto
+				{
+					Id = departmentVM.Id,
+					Name = departmentVM.Name,
+					Code = departmentVM.Code,
+					Description = departmentVM.Description,
+					CreationDate = departmentVM.CreationDate
+				};
 				var Result = departmentServices.UpdateDepartment(departmentDto);
 				if (Result > 0)
 					return RedirectToAction(nameof(Index));
@@ -150,7 +161,7 @@ namespace IKEA.PL.Controllers
 			}
 
 			ModelState.AddModelError(string.Empty, Message);
-			return View(departmentDto);
+			return View(departmentVM);
 
 		}
 		#endregion
@@ -169,6 +180,7 @@ namespace IKEA.PL.Controllers
 
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public IActionResult Delete(int deptId)
 		{
 			var Message = string.Empty;
@@ -190,6 +202,8 @@ namespace IKEA.PL.Controllers
 			ModelState.AddModelError(string.Empty, Message);
 			return RedirectToAction(nameof(Delete), new { id = deptId });
 		}
+
+
 
 		#endregion
 

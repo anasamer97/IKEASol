@@ -1,15 +1,11 @@
 ﻿using IKEA.DAL.Common.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IKEA.BLL.Dto_s.Employees
+namespace IKEA.PL.ViewModel
 {
-    public class CreatedEmployeeDto
-    {
+	public class EmployeeVM
+	{
+		public int Id { get; set; }	
 		[MaxLength(50, ErrorMessage = "Max length is 50 characters")]
 		[MinLength(5, ErrorMessage = "Min length is 5 characters")]
 		public string Name { get; set; }

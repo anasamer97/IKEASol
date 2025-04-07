@@ -11,7 +11,7 @@ namespace IKEA.BLL.Services.EmployeeServices
     public interface IEmployeeServices
     {
 		// DTO: Data Transfer Object  
-		IEnumerable<EmployeeDto> GetAllEmployees();
+		IEnumerable<EmployeeDto> GetAllEmployees(string search);
 
 		EmployeeDetailsDto? GetEmployeeById(int id);
 

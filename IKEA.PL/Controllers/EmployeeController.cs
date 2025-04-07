@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IKEA.PL.Controllers
 {
-    public class EmployeeController : Controller
-    {
+	public class EmployeeController : Controller
+	{
 		#region Services - Dependency Injection
 		private readonly IEmployeeServices employeeServices;
 		private readonly ILogger<EmployeeController> logger;
 		private readonly IWebHostEnvironment environment;
 
-		public EmployeeController(IEmployeeServices employeeServices, ILogger<EmployeeController> logger, IWebHostEnvironment environment)
+		public EmployeeController(IEmployeeServices employeeServices, ILogger<EmployeeController> logger, IWebHostEnvironment environment, IDepartmentServices departmentServices)
 		{
 			this.employeeServices = employeeServices;
 			this.logger = logger;
@@ -23,13 +23,13 @@ namespace IKEA.PL.Controllers
 		#endregion
 
 
-		#region Indeex
+		#region Index
 		[HttpGet]
-		public IActionResult Index()
+		public IActionResult Index(string search)
 		{
-			var employees = employeeServices.GetAllEmployees();
+			var employees = employeeServices.GetAllEmployees(search);
 			return View(employees);
-		} 
+		}
 		#endregion
 
 		#region Create
@@ -41,33 +41,16 @@ namespace IKEA.PL.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Create(EmployeeVM employeeVM)
+		public IActionResult Create(CreatedEmployeeDto employeeDto) 
 		{
-			// Server Side Validation 
 			if (!ModelState.IsValid)
-				return View(employeeVM);
+				return View(employeeDto);
 
 			var Message = string.Empty;
-
-
 			try
 			{
-				var employee = new CreatedEmployeeDto
-				{
-					Name = employeeVM.Name,
-					Age = employeeVM.Age,
-					Address = employeeVM.Address,
-					Salary = employeeVM.Salary,
-					IsActive = employeeVM.IsActive,
-					Email = employeeVM.Email,
-					PhoneNumber = employeeVM.PhoneNumber,
-					EmployeeType = employeeVM.EmployeeType,
-					Gender = employeeVM.Gender,
-					HiringDate = employeeVM.HiringDate
-
-
-				};
-				var Result = employeeServices.CreateEmployee(employee);
+				var Result = employeeServices.CreateEmployee(employeeDto);
+				
 				if (Result > 0)
 					return RedirectToAction(nameof(Index));
 
@@ -86,7 +69,7 @@ namespace IKEA.PL.Controllers
 			}
 
 			ModelState.AddModelError(string.Empty, Message);
-			return View(employeeVM);
+			return View(employeeDto);
 
 		}
 		#endregion
@@ -104,6 +87,7 @@ namespace IKEA.PL.Controllers
 				return NotFound();
 
 			return View(employee);
+
 		}
 		#endregion
 
@@ -117,7 +101,7 @@ namespace IKEA.PL.Controllers
 			if (employee is null)
 				return NotFound();
 
-			var MappedEmployee = new EmployeeVM
+			var MappedEmployee = new UpdatedEmployeeDto
 			{
 				Id = employee.Id,
 				Name = employee.Name,
@@ -138,37 +122,20 @@ namespace IKEA.PL.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Edit(EmployeeVM employeeVM)
+		public IActionResult Edit(UpdatedEmployeeDto employeeDto)
 		{
 			if (!ModelState.IsValid)
-				return View(employeeVM);
+				return View(employeeDto);
 
 			var Message = string.Empty;
 			try
 			{
-				var employeeDto = new UpdatedEmployeeDto
-				{
-					Name = employeeVM.Name,
-					Age = employeeVM.Age,
-					Address = employeeVM.Address,
-					Salary = employeeVM.Salary,
-					IsActive = employeeVM.IsActive,
-					Email = employeeVM.Email,
-					PhoneNumber = employeeVM.PhoneNumber,
-					EmployeeType = employeeVM.EmployeeType,
-					Gender = employeeVM.Gender,
-					HiringDate = employeeVM.HiringDate,
-
-
-
-				};
 				var Result = employeeServices.UpdatedEmployee(employeeDto);
 				if (Result > 0)
 					return RedirectToAction(nameof(Index));
 				else
 				{
 					Message = "Employee is not updated";
-
 				}
 			}
 
@@ -179,7 +146,7 @@ namespace IKEA.PL.Controllers
 			}
 
 			ModelState.AddModelError(string.Empty, Message);
-			return View(employeeVM);
+			return View(employeeDto);
 
 		}
 		#endregion

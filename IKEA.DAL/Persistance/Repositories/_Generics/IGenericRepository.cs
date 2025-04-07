@@ -13,12 +13,12 @@ namespace IKEA.DAL.Persistance.Repositories._Generics
     {
 		public IQueryable<T> GetAll(bool WithNoTracking = true);
 
-		T? GetById(int id);
+		T? Get(int id);
 		 
-		int Add(T entity);
+		void Add(T entity);
 
-		int Update(T entity);
+		void Update(T entity);
 
-		int Delete(T entity); 
+		void Delete(T entity); 
 	}
 }

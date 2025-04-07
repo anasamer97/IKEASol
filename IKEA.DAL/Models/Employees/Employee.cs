@@ -1,4 +1,5 @@
 ﻿using IKEA.DAL.Common.Enums;
+using IKEA.DAL.Models.Departments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IKEA.DAL.Models.Employees
 {
-    public class Employee:ModelBase
+    public class Employee : ModelBase
     {
         public string Name { get; set; }
 
@@ -29,7 +30,10 @@ namespace IKEA.DAL.Models.Employees
 
         public EmployeeType EmployeeType { get; set; }
 
-		
+        public int? DepartmentID { get; set; }
 
-	}
+        public virtual Department? Department { get; set; }
+
+    
+    }
 }

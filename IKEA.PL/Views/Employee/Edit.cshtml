@@ -1,19 +1,15 @@
-﻿@* @model EmployeeVM *@
-@model UpdatedEmployeeDto
+﻿@model UpdatedEmployeeDto
 @inject IDepartmentServices departmentServices
 @{
     ViewData["Title"] = "Edit Employee";
     var Departments = new SelectList(departmentServices.GetAllDepartments(), nameof(DepartmentDto.Id), nameof(DepartmentDto.Name));
-
 }
 
 <div class="row justify-content-center align-content-center flex-column">
-
     <h1 class="col-6 my-4">Edit Employee @Model.Name.</h1>
-    <form asp-action="Edit" method="post" class="row col-6">
-        @* <partial name="Partials/_CreateEditPartial" model="Model" /> *@
-
+    <form asp-action="Edit" method="post" class="row col-6" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly"></div>
+        <input hidden asp-for="ImageName" />
         <div class="form-group  col-6">
             <label class="form-label" asp-for="Name"></label>
             <input asp-for="Name" class="form-control" />
@@ -58,7 +54,6 @@
             </select>
         </div>
 
-
         <div class="form-group  col-6">
             @foreach (Gender genderOption in Enum.GetValues(typeof(Gender)))
             {
@@ -68,12 +63,16 @@
                         @genderOption
                     </label>
                 </div>
-
             }
         </div>
-        <div class="form-group  col-12">
+        <div class="form-group  col-6">
             <label class="form-label" asp-for="HiringDate"></label>
             <input asp-for="HiringDate" type="date" class="form-control" />
+        </div>
+
+        <div class="form-group  col-6">
+            <label class="form-label" asp-for="Image"></label>
+            <input asp-for="Image" class="form-control" />
         </div>
         <div class="form-group  col-12">
             <div class="form-check">
@@ -81,9 +80,7 @@
                 <input asp-for="IsActive" type="checkbox" class="form-check-input" />
                 <label class="form-check-label" asp-for="IsActive"></label>
             </div>
-        </div>
-
-
+        </div> 
         <div class="mt-4">
             <input type="submit" value="Update" class="btn btn-success" /> ||
             <a asp-action="Index" class="btn btn-secondary">Back To List</a>

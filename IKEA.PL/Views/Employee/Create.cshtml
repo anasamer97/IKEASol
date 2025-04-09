@@ -1,5 +1,4 @@
-﻿@* @model EmployeeVM *@
-@inject IDepartmentServices departmentServices
+﻿@inject IDepartmentServices departmentServices
 @model CreatedEmployeeDto
 @{
     ViewData["Title"] = "Create";
@@ -8,12 +7,8 @@
 
 <div class="row justify-content-center align-content-center flex-column">
     <h1 class="col-6 my-4">Create New Employee</h1>
-    <form asp-action="Create" method="post" class="row col-6">
-        @*Partial view*@
-        @* <partial name="Partials/_CreateEditPartial" model="@Model" /> *@
-
-
-
+    <form asp-action="Create" method="post" class="row col-6" enctype="multipart/form-data">
+      
         <div asp-validation-summary="ModelOnly"></div>
         <div class="form-group  col-6">
             <label class="form-label" asp-for="Name"></label>
@@ -72,10 +67,16 @@
 
             }
         </div>
-        <div class="form-group  col-12">
+        <div class="form-group  col-6">
             <label class="form-label" asp-for="HiringDate"></label>
             <input asp-for="HiringDate" type="date" class="form-control" />
         </div>
+
+        <div class="form-group  col-6">
+            <label class="form-label" asp-for="Image"></label>
+            <input asp-for="Image" class="form-control" />
+        </div>
+
         <div class="form-group  col-12">
             <div class="form-check">
 
@@ -84,7 +85,6 @@
             </div>
         </div>
 
-        @*Buttons*@
         <div class="mt-4">
             <input type="submit" value="Create" class="btn btn-primary" /> ||
             <a asp-action="Index" class="btn btn-secondary">Back To List</a>

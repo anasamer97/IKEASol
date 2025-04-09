@@ -56,9 +56,7 @@ namespace IKEA.PL.Controllers
 
 				else
 					Message = "Department is not created";
-
 			}
-
 			catch (Exception ex)
 			{
 				logger.LogError(ex, ex.Message);
@@ -97,7 +95,9 @@ namespace IKEA.PL.Controllers
 		{
 			if (id is null)
 				return BadRequest();
+
 			var employee = employeeServices.GetEmployeeById(id.Value);
+
 			if (employee is null)
 				return NotFound();
 
@@ -113,7 +113,8 @@ namespace IKEA.PL.Controllers
 				PhoneNumber = employee.PhoneNumber,
 				EmployeeType = employee.EmployeeType,
 				Gender = employee.Gender,
-				HiringDate = employee.HiringDate
+				HiringDate = employee.HiringDate,
+				ImageName = employee.ImageName
 
 			};
 

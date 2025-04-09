@@ -1,4 +1,5 @@
 ﻿using IKEA.DAL.Common.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,11 @@ namespace IKEA.BLL.Dto_s.Employees
 {
     public class CreatedEmployeeDto
     {
-		[MaxLength(50, ErrorMessage = "Max length is 50 characters")]
-		[MinLength(5, ErrorMessage = "Min length is 5 characters")]
+		[MaxLength(50, ErrorMessage = "Max length is 20 characters")]
+		[MinLength(5, ErrorMessage = "Min length is 3 characters")]
 		public string Name { get; set; }
 
-		[Range(22, 30)]
+		[Range(10, 60)]
 		public int? Age { get; set; }
 
 		[RegularExpression(@"^[0-9]{1,3}-[a-zA-Z]{5,10}-[a-zA-Z]{4,10}-[a-zA-Z]{5,10}$", ErrorMessage = "Address must be like 123-Street-City-Country")]
@@ -40,5 +41,7 @@ namespace IKEA.BLL.Dto_s.Employees
 
 		[Display(Name = "Department")]
 		public int? DepartmentID { get; set; }
+
+		public IFormFile? Image { get; set; }
 	}
 }

@@ -5,9 +5,11 @@
 }
 
 <h1>Employee @Model.Name Details</h1>
-
-@* <partial name="Partials/_DeleteDetailsPartial" model="Model" /> *@
-
+<div class="row">
+    <div class="col-3">
+        <img src="~/files/images/@Model.ImageName" class="img-fluid rounded "/>
+    </div>
+</div>
 <!-- Bootstrap Tabs -->
 <ul class="nav nav-tabs" id="employeeTabs" role="tablist">
     <li class="nav-item" role="presentation">

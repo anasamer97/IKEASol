@@ -34,6 +34,8 @@ namespace IKEA.BLL.Dto_s.Employees
 
 		public string? Department { get; set; }
 
+		public string? ImageName { get; set; }
+
 
 		#region Adminstration
 		public int CreatedBy { get; set; }

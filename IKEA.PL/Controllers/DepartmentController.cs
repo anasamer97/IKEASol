@@ -2,10 +2,13 @@
 using IKEA.BLL.Dto_s.Departments;
 using IKEA.BLL.Services.DepartmentServices;
 using IKEA.PL.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IKEA.PL.Controllers
 {
+	[Authorize]
+
 	public class DepartmentController : Controller
 	{
 		#region Dependency Injection

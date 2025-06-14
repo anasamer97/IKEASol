@@ -92,16 +92,5 @@ Or whatever URL your project is configured to launch with.
 ---
 
 
-## 📷 Screenshots
-
-![image](https://github.com/user-attachments/assets/4d092ede-9a0e-437c-bfa4-b60638d84420)
-
-- Login Page  
-- Dashboard / Home  
-- Department CRUD  
-- Employee CRUD  
-
----
-
 
 

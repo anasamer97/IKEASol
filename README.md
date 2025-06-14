@@ -94,7 +94,7 @@ Or whatever URL your project is configured to launch with.
 
 ## 📷 Screenshots
 
-> (You can insert screenshots here after capturing them from your running app.)
+![image](https://github.com/user-attachments/assets/4d092ede-9a0e-437c-bfa4-b60638d84420)
 
 - Login Page  
 - Dashboard / Home  
